@@ -11,6 +11,8 @@ search_game = st.text_input("Search for a game:", "")
 filtered_games = [game for game in games if search_game.lower()
                   in game.lower()]
 
+selectedGame = st.selectbox("Select Games from dropdown", filtered_games)
+
 
 def recommend(game):
     index = games[games['Title'] == game].index[0]
