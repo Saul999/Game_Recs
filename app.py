@@ -6,7 +6,12 @@ similarity = pickle.load(open("similarity_scores.pkl", "rb"))
 
 
 st.header("Game Recommendation System")
-selectedGame = st.selectbox("Select Games from dropdown", games)
+
+search_game = st.text_input("Search for a game:", "")
+filtered_games = [game for game in games if search_game.lower()
+                  in game.lower()]
+
+selectedGame = st.selectbox("Select Games from dropdown", filtered_games)
 
 
 def recommend(game):
