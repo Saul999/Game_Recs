@@ -7,18 +7,14 @@ similarity = pickle.load(open("similarity_scores.pkl", "rb"))
 
 st.header("Game Recommendation System")
 
-# Add a search bar for games
 search_game = st.text_input("Search for a game:", "")
 
 # Filter games based on the search input
-filtered_games = [game for game in games if search_game.lower()
-                  in game.lower()]
+filtered_games = games[games['Title'].str.contains(search_game, case=False)]
 
-# Display a dropdown with the filtered games only if the search bar is used
-if search_game:
-    selectedGame = st.selectbox("Select Games from dropdown", filtered_games)
-else:
-    selectedGame = st.selectbox("Select Games from dropdown", games)
+# Display a dropdown with the filtered games
+selectedGame = st.selectbox(
+    "Select Games from dropdown", filtered_games['Title'], index=0)
 
 
 def recommend(game):
