@@ -15,7 +15,7 @@ def recommend(game):
         list(enumerate(similarity[index])), reverse=True, key=lambda vector: vector[1])
     recommend_games = []
 
-    for i in distance[0:5]:
+    for i in distance[1:6]:
         recommend_games.append(games.iloc[i[0]].Title)
     return recommend_games
 
